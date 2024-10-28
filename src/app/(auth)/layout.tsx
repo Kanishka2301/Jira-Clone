@@ -6,10 +6,9 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
-    <div>
-      <Image src="/logo.svg" height={50} width={100} alt="Logo" />
-      {children}
-    </div>
+    <main className="bg-neutral-100 min-h-screen">
+      <div className="mx-auto max-w-screen-2x p-4">{children}</div>
+    </main>
   );
 };
 export default AuthLayout;
