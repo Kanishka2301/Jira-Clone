@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+
 export const SignInCard = () => {
+  const [email, setEmail] = useState("");
+
   return (
     <Card className="w-full h-full md:w-[487px] border-none shadow-none">
       <CardHeader className="flex items-center justify-center text-center p-7">
@@ -15,8 +19,8 @@ export const SignInCard = () => {
           <Input
             required
             type="email"
-            value="{email}"
-            onChange={() => {}}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter email address"
             disabled={false}
           />
