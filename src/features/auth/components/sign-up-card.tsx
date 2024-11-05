@@ -34,6 +34,14 @@ export const SignUpCard = () => {
         <form className="space-y-4">
           <Input
             required
+            type="text"
+            value={""}
+            onChange={() => {}}
+            placeholder="Enter your name"
+            disabled={false}
+          />
+          <Input
+            required
             type="email"
             value={""}
             onChange={() => {}}
