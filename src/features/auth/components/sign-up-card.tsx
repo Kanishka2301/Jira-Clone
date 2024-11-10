@@ -39,14 +39,15 @@ export const SignUpCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log({ values });
+    console.log("Form data:", values);
   };
+
   return (
     <Card className="w-full h-full md:w-[487px] border-none shadow-none">
       <CardHeader className="flex items-center justify-center text-center p-7">
         <CardTitle className="text-2xl">Sign Up</CardTitle>
         <CardDescription>
-          By signing up, you agree to our {""}
+          By signing up, you agree to our{" "}
           <Link href="/privacy">
             <span className="text-blue-700">Privacy Policy</span>
           </Link>{" "}
@@ -110,8 +111,8 @@ export const SignUpCard = () => {
                 </FormItem>
               )}
             />
-            <Button disabled={false} size="lg" className="w-full">
-              Login
+            <Button type="submit" disabled={false} size="lg" className="w-full">
+              Sign Up
             </Button>
           </form>
         </Form>
@@ -127,7 +128,7 @@ export const SignUpCard = () => {
           className="w-full"
         >
           <FcGoogle className="mr-2 size-5" />
-          Login with Google
+          Sign Up with Google
         </Button>
         <Button
           disabled={false}
@@ -136,7 +137,7 @@ export const SignUpCard = () => {
           className="w-full"
         >
           <FaGithub className="mr-2 size-5" />
-          Login with GitHub
+          Sign Up with GitHub
         </Button>
       </CardContent>
       <div className="px-7">

@@ -1,17 +1,23 @@
-import { z } from "zod";
 import { Hono } from "hono";
+import { z } from "zod";
 import { zValidator } from "@hono/zod-validator";
-import { loginSchema } from "../components/schema";
 
-const app = new Hono().post(
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+const auth = new Hono().post(
   "/login",
-  zValidator("json", loginSchema),
+  zValidator("json", loginSchema), // Use zod validation
   async (c) => {
     const { email, password } = c.req.valid("json");
-    console.log({ email, password });
+    console.log("Login request received:", { email, password });
 
-    return c.json({ email, password });
+    // Here, you would authenticate the user (e.g., check email/password in database)
+
+    return c.json({ message: "Login successful", email }); // Response to frontend
   }
 );
 
-export default app;
+export default auth;
