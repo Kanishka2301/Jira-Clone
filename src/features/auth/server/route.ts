@@ -6,13 +6,23 @@ import { createAdminClient } from "@/lib/appwrite";
 import { ID } from "node-appwrite";
 import { setCookie } from "hono/cookie";
 import { AUTH_COOKIE } from "../constants";
+import { create } from "domain";
 
 const app = new Hono()
   .post("/login", zValidator("json", loginSchema), async (c) => {
     const { email, password } = c.req.valid("json");
-    console.log({ email, password });
+    const { account } = await createAdminClient();
+    const session = await account.createEmailPasswordSession(email, password);
 
-    return c.json({ email, password });
+    setCookie(c, AUTH_COOKIE, session.secret, {
+      path: "/",
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 30,
+    });
+
+    return c.json({ success: true });
   })
   .post("/register", zValidator("json", registerSchema), async (c) => {
     const { name, email, password } = c.req.valid("json");
