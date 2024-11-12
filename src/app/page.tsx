@@ -1,17 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+"use client";
+
+import { useCurrent } from "@/features/auth/api/use-current";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="">
-      <Input />
-      <Button size="xs">Primary123</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="muted">Muted</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="teritary">Teritary</Button>
-    </div>
-  );
+  const router = useRouter();
+  const { data, isLoading } = useCurrent();
+
+  useEffect(() => {
+    if (!data && !isLoading) {
+      router.push("/sign-in");
+    }
+  }, [data]);
+  return <div>Only visible to Authorized users</div>;
 }
