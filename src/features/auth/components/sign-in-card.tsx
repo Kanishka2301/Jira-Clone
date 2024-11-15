@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import Link from "next/link";
-import { loginSchema } from "./schema";
+import { loginSchema } from "../schema";
 import { useLogin } from "../api/use-login";
 
 export const SignInCard = () => {
