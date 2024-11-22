@@ -1,3 +1,4 @@
+"use client";
 import { z } from "zod";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -109,8 +110,8 @@ export const SignUpCard = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={false} size="lg" className="w-full">
-              Login
+            <Button disabled={false} size="lg" className="w-full">
+              Register
             </Button>
           </form>
         </Form>
